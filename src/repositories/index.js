@@ -1,4 +1,4 @@
-import { Contacts } from "../dao/factory.js";
+import { Contacts } from "../dao/factory.js"
 
 import ContactRepository from "./Contacts.repository.js";
 
