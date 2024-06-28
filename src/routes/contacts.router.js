@@ -15,9 +15,9 @@ router.get("/", async (req, res) => {
 })
 
 router.post("/", async (req, res) => {
-    let { name, last_name, phone } = req.body;
+    let { first_name, last_name, phone } = req.body;
 
-    let contact = new ContactDTO({ name, last_name, phone });
+    let contact = new ContactDTO({ first_name, last_name, phone });
     console.log(contact);
     let result = await contactService.createContact(contact);
     console.log(result);
