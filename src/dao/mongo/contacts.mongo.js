@@ -1,6 +1,6 @@
 import contactsModel from './models/Contacts.js';
 
-export default class Contacts {
+export default class ContactsMongo {
     constructor() { }
 
     get = async () => {

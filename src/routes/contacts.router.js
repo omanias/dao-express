@@ -1,27 +1,22 @@
 import { Router } from "express";
-import { Contacts } from '../dao/factory.js'
+import { getContactService } from "../repositories/index.js"; // Importa la función para obtener el servicio
 import ContactDTO from "../dao/DTOs/contact.dto.js";
-import ContactRepository from "../repositories/Contacts.repository.js";
-// import Contacts from "../dao/mongo/contacts.mongo.js";
-import { contactService } from "../repositories/index.js"
 
-const router = Router()
-
-const contactsServices = new Contacts()
+const router = Router();
 
 router.get("/", async (req, res) => {
-    let result = await contactsServices.get()
-    res.send({ status: "success", payload: result })
-})
+    const contactService = await getContactService(); // Obtén el servicio de contactos
+    let result = await contactService.get(); // Llama al método get del servicio
+    res.send({ status: "success", payload: result }); // Envía la respuesta
+});
 
 router.post("/", async (req, res) => {
+    const contactService = await getContactService(); // Obtén el servicio de contactos
     let { first_name, last_name, phone } = req.body;
 
     let contact = new ContactDTO({ first_name, last_name, phone });
-    console.log(contact);
-    let result = await contactService.createContact(contact);
-    console.log(result);
-    res.send({ status: "success", payload: result });
+    let result = await contactService.create(contact); // Llama al método create del servicio
+    res.send({ status: "success", payload: result }); // Envía la respuesta
 });
 
-export default router
+export default router; // Exporta el router para que pueda ser utilizado en app.js
