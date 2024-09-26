@@ -11,8 +11,7 @@ app.use(express.urlencoded({ extended: true }));
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }); */
+app.use("/contacts", contactsRouter)
 app.listen(port, () => {
     console.log(`Servidor corriendo en el puerto ${port}`)
 })
-
-app.use("/contacts", contactsRouter)
